@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+ 
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+ 
+    http://www.apache.org/licenses/LICENSE-2.0
+ 
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+ 
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+ 
+            <link rel="stylesheet" type="text/css" href="css/indPage.css" />
+        <script>
+        //Field                 default                 save on                 on sub
+        //Name                  blank                   page exit               save
+        //Team                  Horsepower              page exit               save
+        //Date                  index 2                 page exit               add 7 days, save
+        //weekly items  		unchecked               page exit               uncheck again, save
+        //monthly items 		unchecked               page exit               uncheck if new month, save
+        //comments              blank                   page exit               blank, save
+        $(document).ready(function() {
+ 
+                var dayTo = new Date();
+                dayTo.setDate(dayTo.getDate() - (dayTo.getDay() + 9));
+                var d1 = fmtDate(dayTo);
+                dayTo.setDate(dayTo.getDate() + 7);
+                var d2 = fmtDate(dayTo);
+                dayTo.setDate(dayTo.getDate() + 7);
+                var d3 = fmtDate(dayTo);
+                dayTo.setDate(dayTo.getDate() + 7);
+                var d4 = fmtDate(dayTo);
+                dayTo.setDate(dayTo.getDate() + 7);
+                var d5 = fmtDate(dayTo);
+        
+                var select = document.getElementById("weekdate"); 
+                var options = [d1, d2, d3, d4]; 
+ 
+                for(var i = 0; i < options.length; i++) {
+                        var opt = options[i];
+                        var el = document.createElement("option");
+                        el.textContent = opt;
+                        el.value = opt;
+                        select.appendChild(el);
+                }
+/*              
+                var vName; 
+                var vTeam; 
+                var vWeekDate; 
+ 
+                var vAttendInfoMtg; 
+                var vPhoneConference;
+                var vD4D; 
+                var vBanditSigns; 
+                var vLOIs; 
+                var vAttendClasses;
+                var vPowerTeamMtg; 
+                var vFBPost; 
+                var vPostInfoMtg;
+                var vNetworkingEvent;
+                var vNewMember;
+                var vPropertyDeal;
+                var vBookRead;
+                var vComments;
+*/
+//      pull in previously saved values
+                var vVersion = localStorage.getItem('lclVersion');
+				var currentVersion = "1.0.2";
+ 
+			//if we have a new version loaded, reset all saved values
+			if(vVersion == null || vVersion !== currentVersion) {
+			/*
+                var vName = null;
+                var vWeekDate = null;
+				var vTeam = null;
+                var vAttendInfoMtg = null;
+                var vAttendInfoMtg = null;
+                var vPhoneConference = null;
+                var vD4D = null;
+                var vBanditSigns = null;
+                var vLOIs = null;
+                var vPowerTeamMtg = null;
+                var vFBPost = null;
+                var vPostInfoMtg = null;
+                var vNetworkingEvent = null;
+                var vNewMember = null;
+                var vPropertyDeal = null;
+                var vBookRead = null;
+                var vComments = null;
+				*/
+				window.localStorage.clear();
+				localStorage.setItem('lclVersion', currentVersion);
+			} 
+                var vName = localStorage.getItem('lclName');
+                var vWeekDate = localStorage.getItem('lclWeekDate');
+
+                var vAttendInfoMtgwGuest = localStorage.getItem('lclAttendInfoMtgwGuest');
+                var vAttendInfoMtg = localStorage.getItem('lclAttendInfoMtg');
+	//			alert(vAttendInfoMtg);
+                var vPhoneConference = localStorage.getItem('lclPhoneConference');
+                var vD4D = localStorage.getItem('lclD4D');
+                var vBanditSigns = localStorage.getItem('lclBanditSigns');
+                var vLOIs = localStorage.getItem('lclLOIs');
+	//			alert(vLOIs);
+                var vPowerTeamMtg = localStorage.getItem('lclPowerTeamMtg');
+                var vWebinar = localStorage.getItem('lclWebinar');
+                var vFBPost = localStorage.getItem('lclFBPost');
+                var vPostInfoMtg = localStorage.getItem('lclPostInfoMtg');
+                var vNetworkingEvent = localStorage.getItem('lclNetworkingEvent');
+                var vNewMember = localStorage.getItem('lclNewMember');
+			//	alert(vNewMember);
+                var vPropertyDeal = localStorage.getItem('lclPropertyDeal');
+                var vBookRead = localStorage.getItem('lclBookRead');
+                var vComments = localStorage.getItem('lclComments');
+
+
+                //      set defaults if not set
+                if(vName == null) { vName = ""; }
+                if(vWeekDate == null) { vWeekDate = fmtDate(new Date()); }
+
+                if(vAttendInfoMtg == null) { vAttendInfoMtg = "0"; }
+                if(vAttendInfoMtgwGuest == null) { vAttendInfoMtgwGuest = "0"; }
+                if(vPhoneConference == null) { vPhoneConference = false; }
+                if(vD4D == null) { vD4D = "0"; }
+                if(vBanditSigns == null) { vBanditSigns = "0"; }
+                if(vLOIs == null) { vLOIs = "0"; }
+                if(vPowerTeamMtg == null) { vPowerTeamMtg = false; }
+                if(vWebinar == null) { vWebinar = false; }
+                if(vFBPost == null) { vFBPost = false; }
+                if(vPostInfoMtg == null) { vPostInfoMtg = false; }
+                if(vNetworkingEvent == null) { vNetworkingEvent = false; }
+                if(vNewMember == null) { vNewMember = "0"; }
+                if(vPropertyDeal == null) { vPropertyDeal = "0"; }
+                if(vBookRead == null) { vBookRead = false; }
+                if(vComments == null) { vComments = ""; }
+
+
+//      set values in the form
+                document.getElementById("name").defaultValue = vName;
+                document.getElementById("weekdate").value = vWeekDate;
+				if(document.getElementById("weekdate").value == '') { document.getElementById("weekdate").selectedIndex = 2; }
+				
+                document.getElementById("attendinfomtgwguest").value = vAttendInfoMtgwGuest;
+                document.getElementById("attendinfomtg").value = vAttendInfoMtg;
+                document.getElementById("phoneconference").checked = (vPhoneConference === 'true');
+                document.getElementById("d4d").value = vD4D;
+                document.getElementById("banditsigns").value = vBanditSigns;
+                document.getElementById("lois").value = vLOIs;
+                document.getElementById("powerteammtg").checked = (vPowerTeamMtg === 'true');
+                document.getElementById("fbpost").checked = (vFBPost === 'true');
+                document.getElementById("postinfomtg").checked = (vPostInfoMtg === 'true');
+                document.getElementById("webinar").checked = (vWebinar === 'true');
+                document.getElementById("networkingevent").checked = (vNetworkingEvent === 'true');
+                document.getElementById("newmember").value = vNewMember;
+                document.getElementById("propertydeal").value = vPropertyDeal;
+                document.getElementById("bookread").checked = (vBookRead === 'true');
+                document.getElementById("comments").defaultValue = vComments;
+                document.getElementById("version").defaultValue = vVersion;
+				calcPoints();
+		//      alert("end");
+        })
+        function completeAndRedirect(){
+                //when hitting the submit button
+				
+                        if (validForm()) { // Calling Validation Function
+								saveFormData();	
+                                //              alert($('form').serialize());
+                                location.href='SubmitPage.html?'+$('form').serialize();
+                        }
+        }
+        function saveFormData(){
+			localStorage.setItem('lclName', document.getElementById("name").value);
+			
+			var f = document.getElementById("weekdate");
+			localStorage.setItem('lclWeekDate', f.options[f.selectedIndex].text);
+
+			var e = document.getElementById("attendinfomtg");
+			localStorage.setItem('lclAttendInfoMtg', e.options[e.selectedIndex].text);
+
+			e = document.getElementById("attendinfomtgwguest");
+			localStorage.setItem('lclAttendInfoMtgwGuest', e.options[e.selectedIndex].text);
+
+			localStorage.setItem('lclPhoneConference', document.getElementById("phoneconference").checked);
+			
+			e = document.getElementById("d4d");
+			localStorage.setItem('lclD4D', e.options[e.selectedIndex].text);
+
+			e = document.getElementById("banditsigns");
+			localStorage.setItem('lclBanditSigns', e.options[e.selectedIndex].text);
+
+			e = document.getElementById("lois");
+			localStorage.setItem('lclLOIs', e.options[e.selectedIndex].text);
+
+			localStorage.setItem('lclPowerTeamMtg', document.getElementById("powerteammtg").checked);
+			localStorage.setItem('lclWebinar', document.getElementById("webinar").checked);
+			localStorage.setItem('lclFBPost', document.getElementById("fbpost").checked);
+			localStorage.setItem('lclPostInfoMtg', document.getElementById("postinfomtg").checked);
+			localStorage.setItem('lclNetworkingEvent', document.getElementById("networkingevent").checked);
+
+			e = document.getElementById("newmember");
+			localStorage.setItem('lclNewMember', e.options[e.selectedIndex].text);
+
+			e = document.getElementById("propertydeal");
+			localStorage.setItem('lclPropertyDeal', e.options[e.selectedIndex].text);
+
+			localStorage.setItem('lclBookRead', document.getElementById("bookread").checked);
+
+			localStorage.setItem('lclComments', document.getElementById("comments").value);
+		}
+		
+        window.onbeforeunload = function (e) {
+        //  var message = "Your confirmation message goes here.",
+        //  e = e || window.event;
+ 
+          // For IE and Firefox
+				saveFormData(); 
+        }
+        function validForm() {
+                var name = document.getElementById("name").value;
+                var points = parseInt(document.getElementById("points").value);
+
+
+                if (name === '') {
+						alert("Please enter your name.");
+                        return false;
+                } else {
+					if (points < 14) {
+							alert("Points must be at least 14.");
+							return false;
+					} else {
+							return true;
+					}
+                }
+        }
+        function fmtDate(today) {
+                var dd = today.getDate();
+                var mm = today.getMonth()+1; //January is 0!
+                var yyyy = today.getFullYear();
+ 
+                if(dd<10) {
+                        dd='0'+dd
+                } 
+                if(mm<10) {
+                        mm='0'+mm
+                } 
+ 
+      return mm+'/'+dd+'/'+yyyy;
+        }
+        function calcPoints(){
+			var points = 0;
+			var e = null;
+
+			e = document.getElementById("attendinfomtg");
+			e = (isNaN(e.options[e.selectedIndex].text)) ? 4 : parseInt(e.options[e.selectedIndex].text);
+			points += e;
+			
+			e = document.getElementById("attendinfomtgwguest");		
+			e = (isNaN(e.options[e.selectedIndex].text)) ? 6 : parseInt(e.options[e.selectedIndex].text);
+			points += e * 5;
+
+			e = document.getElementById("d4d");		
+			e = (isNaN(e.options[e.selectedIndex].text)) ? 6 : parseFloat(e.options[e.selectedIndex].text);
+			points += e;
+
+			e = document.getElementById("banditsigns");
+			e = (isNaN(e.options[e.selectedIndex].text)) ? 100 : parseInt(e.options[e.selectedIndex].text);
+			points += e / 10;
+			
+			e = document.getElementById("lois");
+			e = (isNaN(e.options[e.selectedIndex].text)) ? 100 : parseInt(e.options[e.selectedIndex].text);
+			points += e / 10;
+			
+			if(document.getElementById("phoneconference").checked) { 
+				points += 1
+			}
+			if(document.getElementById("powerteammtg").checked) { 
+				points += 1
+			}
+			if(document.getElementById("fbpost").checked) { 
+				points += 1
+			}
+			if(document.getElementById("postinfomtg").checked) { 
+				points += 1
+			}
+			if(document.getElementById("webinar").checked) { 
+				points += 1
+			}
+			if(document.getElementById("networkingevent").checked) { 
+				points += 5
+			}
+			
+			
+			document.getElementById("points").defaultValue = points;
+		}
+ 
+        </script>
+    <title>Matrix Income Activity Plan</title>
+</head>
+ 
+<body>
+ 
+                <div style="background-color: #20124D;color:white;">
+                <center><img src="./img/MatrixLogo.jpg" alt="Matrix Logo" style="width:249px;height:52px;align:center;" align="middle"></center>
+        <h2 style="text-align: center;">30 Day Success Plan</h2>
+                </div>
+                
+                <form>
+				<span>
+				&nbsp;&nbsp;Week ending Friday:
+                                <select name="weekdate" id="weekdate"></select>                 
+                                <br><br>&nbsp;&nbsp;Name:&nbsp;&nbsp;
+                                <input type="text" name="name" id="name"/>
+                                <br>    
+                        <div style="background-color: rgb(32,18,77);color:white;">
+                                <h4>&nbsp;&nbsp;Weekly - 1X Income Producing Activities</h4>  
+                        </div>
+                                &nbsp;&nbsp;<input onchange="calcPoints()" type="checkbox" name="phoneconference" id="phoneconference" unchecked>Team Phone Conference</input>
+                                <br>&nbsp;&nbsp;<input onchange="calcPoints()" type="checkbox" name="powerteammtg" id="powerteammtg" unchecked>Attend Member Team Meeting</input>                     
+                                <br>&nbsp;&nbsp;<input onchange="calcPoints()" type="checkbox" name="webinar" id="webinar" unchecked>Attend Power Team Webinar</input>
+                                <br><br>
+
+                                &nbsp;&nbsp;&nbsp;&nbsp;Attend Info Meeting:&nbsp;&nbsp;
+                                <select onchange="calcPoints()" style="float:right;clear:both;" name="attendinfomtg" id="attendinfomtg">
+                                        <option>0</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                </select><br>
+                                <br>&nbsp;&nbsp;&nbsp;&nbsp;Guests Brought to Info Meetings:&nbsp;&nbsp;
+                                <select onchange="calcPoints()" style="float:right;clear:both;" name="attendinfomtgwguest" id="attendinfomtgwguest">
+                                        <option>0</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>> 5</option>
+                                </select><br>
+
+                                <br>&nbsp;&nbsp;&nbsp;&nbsp;Driving 4 $$$ hours:&nbsp;&nbsp;
+                                <select onchange="calcPoints()" style="float:right;clear:both;" name="d4d" id="d4d">
+                                        <option>0</option>
+                                        <option>.5</option>
+                                        <option>1</option>
+                                        <option>1.5</option>
+                                        <option>2</option>
+                                        <option>2.5</option>
+                                        <option>3</option>
+                                        <option>3.5</option>
+                                        <option>4</option>
+                                        <option>4.5</option>
+                                        <option>5</option>
+                                        <option>> 5</option>
+                                </select><br>
+								
+                                <br>&nbsp;&nbsp;&nbsp;&nbsp;Bandit Signs Distributed:&nbsp;&nbsp;
+                                <select onchange="calcPoints()" style="float:right;clear:both;" name="banditsigns" id="banditsigns">
+                                        <option>0</option>
+                                        <option>10</option>
+                                        <option>20</option>
+                                        <option>30</option>
+                                        <option>40</option>
+                                        <option>50</option>
+                                        <option>60</option>
+                                        <option>70</option>
+                                        <option>80</option>
+                                        <option>90</option>
+                                        <option>100</option>
+                                        <option>> 100</option>
+                                </select><br>
+                                
+                                <br>&nbsp;&nbsp;&nbsp;&nbsp;LOIs sent:&nbsp;&nbsp;
+                                <select onchange="calcPoints()" style="float:right;clear:both;" name="lois" id="lois">
+                                        <option>0</option>
+                                        <option>10</option>
+                                        <option>20</option>
+                                        <option>30</option>
+                                        <option>40</option>
+                                        <option>50</option>
+                                        <option>60</option>
+                                        <option>70</option>
+                                        <option>80</option>
+                                        <option>90</option>
+                                        <option>100</option>
+                                        <option>> 100</option>
+                                </select><br>
+                                
+                                
+                        <div style="background-color: rgb(32,18,77);color:white;">
+                                <h4>&nbsp;&nbsp;Weekly - 3X Income Producing Activities</h4>  
+                        </div>
+                                &nbsp;&nbsp;<input onchange="calcPoints()" type="checkbox" name="fbpost" id="fbpost" unchecked>Post/repost 3 items on Facebook</input>
+                                <br>&nbsp;&nbsp;<input onchange="calcPoints()" type="checkbox" name="postinfomtg" id="postinfomtg" unchecked>Post Info Mtg 3x</input>
+                                <br>
+                                
+                        <div style="background-color: rgb(32,18,77);color:white;">
+                                <h4>&nbsp;&nbsp;Monthly - Income Producing Activities</h4>  
+                        </div>
+                                &nbsp;&nbsp;<input onchange="calcPoints()" type="checkbox" name="networkingevent" id="networkingevent" unchecked>Attend Networking Event - get 5 contacts</input>
+ 
+                                <br>
+                                
+                        <div style="background-color: rgb(32,18,77);color:white;">
+                                <h4>&nbsp;&nbsp;Results This Month</h4>  
+                        </div>
+                                &nbsp;&nbsp;<input type="checkbox" name="bookread" id="bookread" unchecked>Completed Book of the Month</input><br>
+								
+                                <br>&nbsp;&nbsp;&nbsp;&nbsp;New Members Sponsored:&nbsp;&nbsp;
+                                <select style="float:right;clear:both;" name="newmember" id="newmember">
+                                        <option>0</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>> 10</option>
+                                </select><br>
+
+                                <br>&nbsp;&nbsp;&nbsp;&nbsp;Property Deals Completed:&nbsp;&nbsp;
+                                <select style="float:right;clear:both;" name="propertydeal" id="propertydeal">
+                                        <option>0</option>
+                                        <option>10</option>
+                                        <option>20</option>
+                                        <option>30</option>
+                                        <option>40</option>
+                                        <option>50</option>
+                                        <option>60</option>
+                                        <option>70</option>
+                                        <option>80</option>
+                                        <option>90</option>
+                                        <option>100</option>
+                                        <option>> 100</option>
+                                </select><br>
+
+                                <br>&nbsp;&nbsp;<b>Comments/Feedback:</b><br>&nbsp;&nbsp;<textarea cols="40" rows="3" name="comments" id="comments"></textarea>
+ 
+                                
+                                                
+                                <h1 style="display:inline; float:left">    
+                                        <span></span>
+                                </h1><br> 
+<span style="color:red;">&nbsp;&nbsp;*Minimum 14 pts to submit</span>
+                                <br><br>
+								<div id="deviceready" class="blink">
+                                        <b>Total Points: &nbsp;&nbsp;<input size='' type="text" name="points" readonly id="points" style="font-size:1em;width:15%;border-width:0px;
+border:none;"></input></b>
+										<button style="float:right;" type="button" onclick="completeAndRedirect()">Submit</button>
+                                </div>
+                                <br><br><br>                                            
+                                <p>
+                        <div style="display:inline;float:clear;align:center;">
+                        Powered by <i>www.LogicLeapTech.com</i>&nbsp;&nbsp;v<input size='' type="text" name="version" readonly id="version" style="width:15%;border-width:0px;
+border:none;"></input>
+                        </div>
+					</span>	
+                </form> 
+</body>
+ 
+</html>
+ 
