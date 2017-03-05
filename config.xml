@@ -1,6 +1,6 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.logicleaptech.MatrixActivityPlan" version="1.0.4">
-  <name>Matrix Income Activity Plan</name>
-  <description>Provides an easy way to submit your Matrix income producing activities sheet.</description>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.logicleaptech.MatrixActivityPlan" version="1.0.5">
+  <name>Matrix Companion</name>
+  <description>Provides a companion app for Matrix Investor Network income activities.</description>
   <author href="http://www.LogicLeapTech.com" email="G.Fawley@LogicLeapTech.com">Logic Leap Technologies</author>
   <content src="index.html"/>
   <preference name="DisallowOverscroll" value="true"/>
@@ -49,19 +49,6 @@
     <splash src="res/screens/android/screen-xxhdpi-portrait.png" density="port-xxhdpi"/>
     <splash src="res/screens/android/screen-xxxhdpi-portrait.png" density="port-xxxhdpi"/>
 
-    <splash src="res/screens/android/screen-ldpi-landscape.png" density="land-ldpi"/>
-    <splash src="res/screens/android/screen-mdpi-landscape.png" density="land-mdpi"/>
-    <splash src="res/screens/android/screen-hdpi-landscape.png" density="land-hdpi"/>
-    <splash src="res/screens/android/screen-xhdpi-landscape.png" density="land-xhdpi"/>
-    <splash src="res/screens/android/screen-xxhdpi-landscape.png" density="land-xxhdpi"/>
-    <splash src="res/screens/android/screen-xxxhdpi-landscape.png" density="land-xxxhdpi"/>
-
-    <splash src="res/screens/android/screen-ldpi-landscape.png" density="port-ldpi"/>
-    <splash src="res/screens/android/screen-mdpi-landscape.png" density="port-mdpi"/>
-    <splash src="res/screens/android/screen-hdpi-landscape.png" density="port-hdpi"/>
-    <splash src="res/screens/android/screen-xhdpi-landscape.png" density="port-xhdpi"/>
-    <splash src="res/screens/android/screen-xxhdpi-landscape.png" density="port-xxhdpi"/>
-    <splash src="res/screens/android/screen-xxxhdpi-landscape.png" density="port-xxxhdpi"/>
   </platform>
   <platform name="ios">
     <icon src="res/icons/ios/icon.png" platform="ios" width="57" height="57"/>
@@ -84,14 +71,6 @@
     <splash src="res/screens/ios/screen-iphone-portrait-667h.png" platform="ios" width="750" height="1334"/>
     <splash src="res/screens/ios/screen-iphone-portrait-736h.png" platform="ios" width="1242" height="2208"/>
 
-    <splash src="res/screens/ios/screen-iphone-landscape.png" platform="ios" width="480" height="320"/>
-    <splash src="res/screens/ios/screen-iphone-landscape-2x.png" platform="ios" width="960" height="640"/>
-    <splash src="res/screens/ios/screen-iphone-landscape-568h-2x.png" platform="ios" width="1136" height="640"/>
-    <splash src="res/screens/ios/screen-iphone-landscape-667h.png" platform="ios" width="1334" height="750"/>
-
-    <splash src="res/screens/ios/screen-iphone-landscape-736h.png" platform="ios" width="2208" height="1242"/>
-    <splash src="res/screens/ios/screen-ipad-landscape-2x.png" platform="ios" width="2048" height="1536"/>
-    <splash src="res/screens/ios/screen-ipad-landscape.png" platform="ios" width="1024" height="768"/>
     <splash src="res/screens/ios/screen-ipad-portrait-2x.png" platform="ios" width="1536" height="2048"/>
     <splash src="res/screens/ios/screen-ipad-portrait.png" platform="ios" width="768" height="1024"/>
     <splash src="res/screens/ios/screen-iphone-portrait-2x.png" platform="ios" width="640" height="960"/>
