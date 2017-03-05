@@ -1,7 +1,7 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.logicleaptech.MatrixActivityPlan" version="1.0.4">
   <name>Matrix Income Activity Plan</name>
   <description>Provides an easy way to submit your Matrix income producing activities sheet.</description>
-  <author href="http://logicleaptech.com" email="g.fawley@logicleaptech.com">Logic Leap Technologies</author>
+  <author href="http://www.LogicLeapTech.com" email="G.Fawley@LogicLeapTech.com">Logic Leap Technologies</author>
   <content src="index.html"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="android-minSdkVersion" value="14"/>
@@ -26,8 +26,7 @@
   <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2"/>
   <plugin name="cordova-plugin-vibration" source="npm" spec="~2.1.0"/>
   <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1"/>
-  <icon src="icon.png"/>
-<!-- only android done here  TODO ios and windows  -->
+  <icon src="img/icon.png"/>
   <platform name="android">
     <icon src="res/icons/android/icon-36-ldpi.png" density="ldpi"/>
     <icon src="res/icons/android/icon-48-mdpi.png" density="mdpi"/>
