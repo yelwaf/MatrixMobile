@@ -72,51 +72,18 @@
                         el.value = opt;
                         select.appendChild(el);
                 }
-/*              
-                var vName; 
-                var vTeam; 
-                var vWeekDate; 
- 
-                var vAttendInfoMtg; 
-                var vPhoneConference;
-                var vD4D; 
-                var vBanditSigns; 
-                var vLOIs; 
-                var vAttendClasses;
-                var vPowerTeamMtg; 
-                var vFBPost; 
-                var vPostInfoMtg;
-                var vNetworkingEvent;
-                var vNewMember;
-                var vPropertyDeal;
-                var vBookRead;
-                var vComments;
-*/
 //      pull in previously saved values
+//***************************************************************************				
+//***************************************************************************				
+//***************************************************************************				
+				var currentVersion = "1.0.4";
+//***************************************************************************				
+//***************************************************************************				
+//***************************************************************************				
                 var vVersion = localStorage.getItem('lclVersion');
-				var currentVersion = "1.0.2";
  
 			//if we have a new version loaded, reset all saved values
 			if(vVersion == null || vVersion !== currentVersion) {
-			/*
-                var vName = null;
-                var vWeekDate = null;
-				var vTeam = null;
-                var vAttendInfoMtg = null;
-                var vAttendInfoMtg = null;
-                var vPhoneConference = null;
-                var vD4D = null;
-                var vBanditSigns = null;
-                var vLOIs = null;
-                var vPowerTeamMtg = null;
-                var vFBPost = null;
-                var vPostInfoMtg = null;
-                var vNetworkingEvent = null;
-                var vNewMember = null;
-                var vPropertyDeal = null;
-                var vBookRead = null;
-                var vComments = null;
-				*/
 				window.localStorage.clear();
 				localStorage.setItem('lclVersion', currentVersion);
 			} 
@@ -453,17 +420,17 @@
                                 <br>&nbsp;&nbsp;&nbsp;&nbsp;Property Deals Completed:&nbsp;&nbsp;
                                 <select style="float:right;clear:both;" name="propertydeal" id="propertydeal">
                                         <option>0</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
                                         <option>10</option>
-                                        <option>20</option>
-                                        <option>30</option>
-                                        <option>40</option>
-                                        <option>50</option>
-                                        <option>60</option>
-                                        <option>70</option>
-                                        <option>80</option>
-                                        <option>90</option>
-                                        <option>100</option>
-                                        <option>> 100</option>
+                                        <option>> 10</option>
                                 </select><br>
 
                                 <br>&nbsp;&nbsp;<b>Comments/Feedback:</b><br>&nbsp;&nbsp;<textarea cols="40" rows="3" name="comments" id="comments"></textarea>
