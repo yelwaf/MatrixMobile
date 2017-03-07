@@ -76,7 +76,7 @@
 //***************************************************************************				
 //***************************************************************************				
 //***************************************************************************				
-				var currentVersion = "1.0.4";
+				var currentVersion = "1.0.5";
 //***************************************************************************				
 //***************************************************************************				
 //***************************************************************************				
@@ -111,24 +111,24 @@
 
 
                 //      set defaults if not set
-                if(vName == null) { vName = ""; }
-                if(vWeekDate == null) { vWeekDate = fmtDate(new Date()); }
+				if(vName == null) { vName = ""; }
+				if(vWeekDate == null) { vWeekDate = fmtDate(new Date()); }
 
-                if(vAttendInfoMtg == null) { vAttendInfoMtg = "0"; }
-                if(vAttendInfoMtgwGuest == null) { vAttendInfoMtgwGuest = "0"; }
-                if(vPhoneConference == null) { vPhoneConference = false; }
-                if(vD4D == null) { vD4D = "0"; }
-                if(vBanditSigns == null) { vBanditSigns = "0"; }
-                if(vLOIs == null) { vLOIs = "0"; }
-                if(vPowerTeamMtg == null) { vPowerTeamMtg = false; }
-                if(vWebinar == null) { vWebinar = false; }
-                if(vFBPost == null) { vFBPost = false; }
-                if(vPostInfoMtg == null) { vPostInfoMtg = false; }
-                if(vNetworkingEvent == null) { vNetworkingEvent = false; }
-                if(vNewMember == null) { vNewMember = "0"; }
-                if(vPropertyDeal == null) { vPropertyDeal = "0"; }
-                if(vBookRead == null) { vBookRead = false; }
-                if(vComments == null) { vComments = ""; }
+				if(vAttendInfoMtg == null) { vAttendInfoMtg = "0"; }
+				if(vAttendInfoMtgwGuest == null) { vAttendInfoMtgwGuest = "0"; }
+				if(vPhoneConference == null) { vPhoneConference = false; }
+				if(vD4D == null) { vD4D = "0"; }
+				if(vBanditSigns == null) { vBanditSigns = "0"; }
+				if(vLOIs == null) { vLOIs = "0"; }
+				if(vPowerTeamMtg == null) { vPowerTeamMtg = false; }
+				if(vWebinar == null) { vWebinar = false; }
+				if(vFBPost == null) { vFBPost = false; }
+				if(vPostInfoMtg == null) { vPostInfoMtg = false; }
+				if(vNetworkingEvent == null) { vNetworkingEvent = false; }
+				if(vNewMember == null) { vNewMember = "0"; }
+				if(vPropertyDeal == null) { vPropertyDeal = "0"; }
+				if(vBookRead == null) { vBookRead = false; }
+				if(vComments == null) { vComments = ""; }
 
 
 //      set values in the form
@@ -151,7 +151,7 @@
                 document.getElementById("propertydeal").value = vPropertyDeal;
                 document.getElementById("bookread").checked = (vBookRead === 'true');
                 document.getElementById("comments").defaultValue = vComments;
-                document.getElementById("version").defaultValue = vVersion;
+                document.getElementById("version").defaultValue = currentVersion;
 				calcPoints();
 		//      alert("end");
         })
@@ -161,7 +161,7 @@
                         if (validForm()) { // Calling Validation Function
 								saveFormData();	
                                 //              alert($('form').serialize());
-                                location.href='SubmitPage.html?'+$('form').serialize();
+                                location.href='SubmitReportProgress.html?'+$('form').serialize();
                         }
         }
         function saveFormData(){
@@ -209,7 +209,7 @@
         //  e = e || window.event;
  
           // For IE and Firefox
-				saveFormData(); 
+	//			saveFormData(); 
         }
         function validForm() {
                 var name = document.getElementById("name").value;
@@ -287,6 +287,7 @@
 			
 			
 			document.getElementById("points").defaultValue = points;
+			saveFormData();
 		}
  
         </script>
@@ -315,7 +316,7 @@
                                 <br>&nbsp;&nbsp;<input onchange="calcPoints()" type="checkbox" name="webinar" id="webinar" unchecked>Attend Power Team Webinar</input>
                                 <br><br>
 
-                                &nbsp;&nbsp;&nbsp;&nbsp;Attend Info Meeting:&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;Attend Info Meeting w/o Guest:&nbsp;&nbsp;
                                 <select onchange="calcPoints()" style="float:right;clear:both;" name="attendinfomtg" id="attendinfomtg">
                                         <option>0</option>
                                         <option>1</option>
@@ -392,7 +393,7 @@
                         <div style="background-color: rgb(32,18,77);color:white;">
                                 <h4>&nbsp;&nbsp;Monthly - Income Producing Activities</h4>  
                         </div>
-                                &nbsp;&nbsp;<input onchange="calcPoints()" type="checkbox" name="networkingevent" id="networkingevent" unchecked>Attend Networking Event - get 5 contacts</input>
+                                &nbsp;&nbsp;<input onchange="calcPoints()" type="checkbox" name="networkingevent" id="networkingevent" unchecked>Attend Network Event - get 5 leads</input>
  
                                 <br>
                                 
