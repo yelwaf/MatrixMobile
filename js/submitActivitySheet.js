@@ -29,10 +29,14 @@ $(document).ready(function() {
 //	alert(weekdate);
 	var name = getUrlVars()["name"];
 //	alert(name);
-	var teamname = getUrlVars()["teamname"];
+//	var teamname = getUrlVars()["teamname"];
 //	alert(teamname);
+	var comments = getUrlVars()["comments"];
+//	alert(comments);
 	var attendinfomtg = getUrlVars()["attendinfomtg"];
 //	alert(attendinfomtg);
+	var attendinfomtgwguest = getUrlVars()["attendinfomtgwguest"];
+//	alert(attendinfomtgwguest);
 	var phoneconference = getUrlVars()["phoneconference"];
 //	alert(phoneconference);
 	var d4d = getUrlVars()["d4d"];
@@ -41,7 +45,7 @@ $(document).ready(function() {
 //	alert(banditsigns);
 	var lois = getUrlVars()["lois"];
 //	alert(lois);
-	var attendclasses = getUrlVars()["attendclasses"];
+//	var attendclasses = getUrlVars()["attendclasses"];
 //	alert(attendclasses);
 	var powerteammtg = getUrlVars()["powerteammtg"];
 //	alert(powerteammtg);
@@ -49,24 +53,30 @@ $(document).ready(function() {
 //	alert(fbpost);
 	var postinfomtg = getUrlVars()["postinfomtg"];
 //	alert(postinfomtg);
+	var webinar = getUrlVars()["webinar"];
+//	alert(webinar);
 	var networkingevent = getUrlVars()["networkingevent"];
 //	alert(networkingevent);
 	var newmember = getUrlVars()["newmember"];
-//	alert(networkingevent);
+//	alert(newmember);
 	var propertydeal = getUrlVars()["propertydeal"];
-//	alert(networkingevent);
+//	alert(propertydeal);
 	var bookread = getUrlVars()["bookread"];
 //	alert(bookread);
-	var comments = getUrlVars()["comments"];
-//	alert(comments);
+	var points = getUrlVars()["points"];
+//	alert(points);
+	var version = "Matrix Companion "+getUrlVars()["version"];
+//	alert(version);
 	var delimeter = ";";
 	
     $.ajax({
-        url: "http://www.infinitehealthcoaching.com/MatrixActivity-0.0.1/greeting?code="+weekdate+delimeter+name+delimeter+teamname+delimeter+comments+delimeter+attendinfomtg+delimeter+phoneconference+delimeter+d4d+delimeter+banditsigns+delimeter+lois+delimeter+attendclasses+delimeter+powerteammtg+delimeter+fbpost+delimeter+postinfomtg+delimeter+networkingevent+delimeter+newmember+delimeter+propertydeal+delimeter+bookread
+        url: "http://www.infinitehealthcoaching.com/MatrixActivity-0.0.1/submitIPA105?code="+weekdate+delimeter+name+delimeter+comments+delimeter+attendinfomtg+delimeter+
+		attendinfomtgwguest+delimeter+
+		phoneconference+delimeter+d4d+delimeter+banditsigns+delimeter+lois+delimeter+webinar+delimeter+powerteammtg+delimeter+fbpost+delimeter+postinfomtg+delimeter+networkingevent+delimeter+newmember+delimeter+propertydeal+delimeter+bookread+delimeter+points
+		+delimeter+version
         //url: "http://localhost:8080/greeting"
        	//url: "http://rest-service.guides.spring.io/greeting"
 
-    	
     }).then(function(data) {
 		alert("Thank you, "+data.content+"!");
 		
@@ -74,6 +84,7 @@ $(document).ready(function() {
 			localStorage.removeItem('lclWeekDate');
 
 			localStorage.removeItem('lclAttendInfoMtg');
+			localStorage.removeItem('lclAttendInfoMtgwGuest');
 			localStorage.removeItem('lclPhoneConference');
 			localStorage.removeItem('lclD4D');
 			localStorage.removeItem('lclBanditSigns');
@@ -97,4 +108,5 @@ $(document).ready(function() {
    //    $('.greeting-content').append(data.content);
     });
 });
+
 
